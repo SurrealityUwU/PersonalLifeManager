@@ -1,6 +1,9 @@
 
 class Property:
-    type = ""
+    property_type = ""
+
+    def __init__(self, value):
+        self.value = value
 
     def is_filtered(self, condition, object):
         # TODO
@@ -8,6 +11,7 @@ class Property:
 
 class Text(Property):
     value = ""
+    property_type = "Text"
 
     def is_filtered(self, condition, object):
         # TODO
@@ -15,6 +19,7 @@ class Text(Property):
 
 class Number(Property):
     value = 0
+    property_type = "Number"
 
     def is_filtered(self, condition, object):
         # TODO
@@ -22,6 +27,7 @@ class Number(Property):
 
 class Checkbox(Property):
     value = False
+    property_type = "Checkbox"
 
     def is_filtered(self, condition, object):
         # TODO

@@ -3,10 +3,8 @@ import datetime
 class Task:
     near_warning_days = 3
 
-    def __init__(self):
-        print("Task")
-        self.name = ""
-        self.property_values = []
+    def __init__(self, property_values):
+        self.property_values = property_values
         self.recurring = 0
         self.show = True
         self.urgency = 0
@@ -14,6 +12,10 @@ class Task:
         self.start_date = datetime.datetime.today()
         self.completed_date = self.start_date
         self.due_date = self.start_date
+
+    def __str__(self):
+        return "Task Name: {}\nProperties: {}\nRecurring: {}\nShow: {}\nUrgency: {}\nStart Date: {}\nCompleted Date: {}\nDue Date: {}".format(
+            self.name, self.property_values, self.recurring, self.show, self.urgency, self.start_date, self.completed_date, self.due_date)
 
     def calculate_points(self):
         # TODO
@@ -28,5 +30,7 @@ class Task:
         pass
 
 
+
 if __name__ == "__main__":
-    Task()
+    t = Task()
+    print(t)
