@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="asa">
+    <file>search-engine.png</file>
+  </qresource>
+</RCC>

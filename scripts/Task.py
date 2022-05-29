@@ -1,36 +1,30 @@
 import datetime
+import sys
+from PySide6.QtWidgets import *
+from PySide6.QtCore import *
+
+sys.path.append('../PersonalLifeManager')
+from UserInterface.UIFile import Ui_Form
 
 class Task:
-    near_warning_days = 3
-
-    def __init__(self, property_values):
-        self.property_values = property_values
-        self.recurring = 0
+    def __init__(self, title, tag, desc = "", startDate = QDate(), endDate = QDate(), time = QTime(), status = "Upcoming"):
+        print("New Task")
         self.show = True
-        self.urgency = 0
 
-        self.start_date = datetime.datetime.today()
-        self.completed_date = self.start_date
-        self.due_date = self.start_date
+        self.title = title
+        self.desc = desc
+        self.startDate = startDate
+        self.endDate = endDate
+        self.time = time
+        self.tag = tag
+        self.status = status
+        self.calc_priority()
+
+    def calc_priority(self):
+        if (self.startDate.daysTo(self.endDate) == 0):
+            self.priority = 1
+        else:
+            self.priority = 1 - (QDate.currentDate().daysTo(self.endDate) / self.startDate.daysTo(self.endDate))
 
     def __str__(self):
-        return "Task Name: {}\nProperties: {}\nRecurring: {}\nShow: {}\nUrgency: {}\nStart Date: {}\nCompleted Date: {}\nDue Date: {}".format(
-            self.name, self.property_values, self.recurring, self.show, self.urgency, self.start_date, self.completed_date, self.due_date)
-
-    def calculate_points(self):
-        # TODO
-        pass
-
-    def calculate_urgency(self):
-        # TODO
-        pass
-
-    def filter(self, object1, condition, object2, connector):
-        # TODO
-        pass
-
-
-
-if __name__ == "__main__":
-    t = Task()
-    print(t)
+        return f"Title: {self.title} {self.priority}"
